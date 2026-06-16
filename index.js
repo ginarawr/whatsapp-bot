@@ -10,8 +10,13 @@ const axios = require('axios');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
+        executablePath: '/snap/bin/chromium',
         headless: true,
-        protocolTimeout: 120000
+        protocolTimeout: 120000,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
     }
 });
 
@@ -48,50 +53,50 @@ client.on('message_create', async (message) => {
 
         const text = message.body.trim();
 
-        // ==========================
-// RESPON UMUM UNTUK SEMUA ORANG
+console.log(
+    'FROM:',
+    message.from
+);
+
+console.log(
+    'AUTHOR:',
+    message.author
+);
+
+// ==========================
+// FILTER CHAT BOT
 // ==========================
 
+const BOT_CHAT_ID =
+    '73620051198146@lid';
+
+// Abaikan balasan bot sendiri
 if (
-    text.toLowerCase() === 'gin' ||
-    text.toLowerCase() === 'gina'
+    message.author === undefined
 ) {
-
-    await client.message.reply('iya?');
-
-    return;
-}
-if (
-    text.toLowerCase() === 'p' ||
-    text.toLowerCase() === 'pp'
-) {
-
-    await client.message.reply('apa?');
-
-    return;
-}
-if (
-    text.toLowerCase() === "assalamu'alaikum" ||
-    text.toLowerCase() === "assalamu'alaikum gin" ||
-    text.toLowerCase() === "assalamu'alaikum gina" ||
-    text.toLowerCase() === 'assalamualaikum' ||
-    text.toLowerCase() === 'assalamualaikum gin' ||
-    text.toLowerCase() === 'assalamualaikum gina' ||
-    text.toLowerCase() === "assalamu'alaikum wr wb" ||
-    text.toLowerCase() === 'assalamualaikum wr wb' ||
-    text.toLowerCase() === 'assalamualaikum warahmatullahi wabarakatuh'
-) {
-
-    await client.message.reply("iya, wa'alaikumussalam wr wb");
-
     return;
 }
 
-// ==========================
-// FINANCE TRACKER HANYA UNTUK PESAN SENDIRI
-// ==========================
+// Abaikan status WA
+if (
+    message.from ===
+    'status@broadcast'
+) {
+    return;
+}
 
-if (!message.fromMe) {
+// Abaikan semua chat selain grup bot
+if (
+    message.from !==
+    BOT_CHAT_ID
+) {
+    return;
+}
+
+// Hanya proses pesan yang saya kirim
+if (
+    !message.fromMe
+) {
     return;
 }
 
@@ -168,12 +173,19 @@ Gunakan perintah "tutorial" untuk melihat panduan ini lagi.`
         // ==========================
         if (text.toLowerCase() === 'saldo') {
 
-            const response =
-                await axios.get(
-                    APPS_SCRIPT_URL
-                );
+           console.log('COMMAND SALDO');
 
-            await client.message.reply(
+    const response =
+        await axios.get(
+            APPS_SCRIPT_URL
+        );
+
+    console.log(
+        'RESPON APPS SCRIPT:',
+        response.data
+    );
+
+            await message.reply(
                 `💰 Saldo Saat Ini\n\nRp${formatRupiah(response.data.saldo)}`
             );
 
@@ -754,7 +766,11 @@ if (
 
 if (!response.data.success) {
 
+<<<<<<< HEAD
     await client.message.reply(
+=======
+    await message.reply(
+>>>>>>> 507fa277b1558e9f7b5632b0d0213b61a73faa36
         '❌ Gagal menyimpan transaksi'
     );
 
@@ -777,11 +793,15 @@ Keterangan : ${keterangan}`
     } catch (error) {
 
         console.error(
-            'ERROR:',
-            error.message
-        );
+    'ERROR:',
+    error
+);
 
+<<<<<<< HEAD
         await client.message.reply(
+=======
+        await message.reply(
+>>>>>>> 507fa277b1558e9f7b5632b0d0213b61a73faa36
             '❌ Terjadi kesalahan.'
         );
     }
