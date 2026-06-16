@@ -10,8 +10,13 @@ const axios = require('axios');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
+        executablePath: '/snap/bin/chromium',
         headless: true,
-        protocolTimeout: 120000
+        protocolTimeout: 120000,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
     }
 });
 
