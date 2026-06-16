@@ -93,12 +93,77 @@ if (
     return;
 }
 
-// Hanya proses pesan yang saya kirim
+// Hanya proses pesan saya
 if (
     !message.fromMe
 ) {
     return;
 }
+
+// ==========================
+// SAPAAN SOSIAL
+// ==========================
+
+if (
+    text.toLowerCase() === 'gin' ||
+    text.toLowerCase() === 'gina'
+) {
+
+    await client.sendMessage(
+        message.from,
+        'iya?'
+    );
+
+    return;
+}
+
+if (
+    text.toLowerCase() === 'p' ||
+    text.toLowerCase() === 'pp'
+) {
+
+    await client.sendMessage(
+        message.from,
+        'apa?'
+    );
+
+    return;
+}
+
+if (
+    text.toLowerCase() === "assalamu'alaikum" ||
+    text.toLowerCase() === "assalamu'alaikum gin" ||
+    text.toLowerCase() === "assalamu'alaikum gina" ||
+    text.toLowerCase() === 'assalamualaikum' ||
+    text.toLowerCase() === 'assalamualaikum gin' ||
+    text.toLowerCase() === 'assalamualaikum gina' ||
+    text.toLowerCase() === "assalamu'alaikum wr wb" ||
+    text.toLowerCase() === 'assalamualaikum wr wb'
+) {
+
+    await client.sendMessage(
+        message.from,
+        "iya, wa'alaikumussalam wr wb"
+    );
+
+    return;
+}
+
+if (
+    text.toLowerCase() === 'sibuk nggak' ||
+    text.toLowerCase() === 'sibuk gak' ||
+    text.toLowerCase() === 'lagi sibuk nggak' ||
+    text.toLowerCase() === 'lagi sibuk gak'
+) {
+
+    await client.sendMessage(
+        message.from,
+        'Kenapa dulu?'
+    );
+
+    return;
+}
+
 
 console.log('====================');
 console.log(
@@ -114,39 +179,91 @@ console.log('====================');
         if (text.toLowerCase() === 'tutorial') {
 
             await message.reply(
-`📚 Cara Menggunakan Bot
+`📚 Cara Menggunakan Bot Gina
+
+═══════════════════════
+💰 FINANCE TRACKER
+═══════════════════════
 
 ➕ Tambah Pemasukan
+
+Format:
 
 masuk
 100000
 beasiswa
 semester 6
 
+Contoh:
+
+masuk
+500000
+freelance
+website client
+
+---
+
 ➖ Tambah Pengeluaran
+
+Format:
 
 keluar
 15000
 makan
 ayam geprek
 
+Contoh:
+
+keluar
+25000
+cafe
+kopi susu
+
+---
+
 💰 Cek Saldo
 
 saldo
 
-📊 Laporan
+---
+
+📊 Laporan Keuangan
 
 laporan
+
+---
 
 📂 Daftar Kategori
 
 kategori
 
-📂 Detail Kategori
+---
+
+🔍 Detail Kategori
 
 kategori makan
 
-📝 Tambah Tugas
+Contoh:
+
+kategori cafe
+kategori beasiswa
+kategori hadiah
+
+═══════════════════════
+📝 TODO LIST
+═══════════════════════
+
+➕ Tambah Tugas
+
+Format:
+
+tugas
+Nama Tugas
+Deskripsi
+Deadline
+Prioritas
+
+Contoh:
 
 tugas
 Bab 4
@@ -154,15 +271,78 @@ Revisi PSD
 20/06/2026
 rendah
 
-📋 Daftar Tugas
+Prioritas:
+
+tinggi
+sedang
+rendah
+
+---
+
+📋 Daftar Tugas Aktif
 
 list tugas
+
+---
 
 🔍 Detail Tugas
 
 detail 1
 
-Gunakan perintah "tutorial" untuk melihat panduan ini lagi.`
+Angka 1 adalah nomor tugas dari hasil "list tugas".
+
+═══════════════════════
+✏️ EDIT TUGAS
+═══════════════════════
+
+✅ Ubah Status
+
+mulai 1
+
+atau
+
+selesai 1
+
+---
+
+📅 Ubah Deadline
+
+deadline 1
+25/06/2026
+
+---
+
+🚨 Ubah Prioritas
+
+prioritas 1
+tinggi
+
+atau
+
+prioritas 1
+sedang
+
+atau
+
+prioritas 1
+rendah
+
+---
+
+📝 Ubah Deskripsi
+
+deskripsi 1
+Tambah analisis PSD
+
+═══════════════════════
+💡 TIPS
+═══════════════════════
+
+• Nomor tugas mengikuti hasil dari "list tugas"
+• Tugas yang sudah selesai tidak muncul lagi di daftar aktif
+• Gunakan "detail 1" untuk melihat informasi lengkap tugas
+• Gunakan "tutorial" kapan saja untuk melihat panduan ini lagi
+`
             );
 
             return;
