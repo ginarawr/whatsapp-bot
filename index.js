@@ -77,28 +77,7 @@ if (
     return;
 }
 
-// Abaikan status WA
-if (
-    message.from ===
-    'status@broadcast'
-) {
-    return;
-}
 
-// Abaikan semua chat selain grup bot
-if (
-    message.from !==
-    BOT_CHAT_ID
-) {
-    return;
-}
-
-// Hanya proses pesan saya
-if (
-    !message.fromMe
-) {
-    return;
-}
 
 // ==========================
 // SAPAAN SOSIAL
@@ -161,6 +140,29 @@ if (
         'Kenapa dulu?'
     );
 
+    return;
+}
+
+// Abaikan status WA
+if (
+    message.from ===
+    'status@broadcast'
+) {
+    return;
+}
+
+// Abaikan semua chat selain grup bot
+if (
+    message.from !==
+    BOT_CHAT_ID
+) {
+    return;
+}
+
+// Hanya proses pesan saya
+if (
+    !message.fromMe
+) {
     return;
 }
 
