@@ -53,6 +53,16 @@ client.on('message_create', async (message) => {
 
         const text = message.body.trim();
 
+        console.log(
+    'FROM:',
+    message.from
+);
+
+console.log(
+    'AUTHOR:',
+    message.author
+);
+
         // ==========================
 // RESPON UMUM UNTUK SEMUA ORANG
 // ==========================
