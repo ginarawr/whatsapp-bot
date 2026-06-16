@@ -53,6 +53,12 @@ client.on('message_create', async (message) => {
 
         const text = message.body.trim();
 
+        if (
+    message.author === undefined
+) {
+    return;
+}
+
         console.log(
     'FROM:',
     message.from
