@@ -77,14 +77,6 @@ console.log('====================');
 const BOT_CHAT_ID =
     '73620051198146@lid';
 
-// Abaikan balasan bot sendiri
-if (
-    message.author === undefined
-) {
-    return;
-}
-
-
 
 // ==========================
 // SAPAAN SOSIAL
