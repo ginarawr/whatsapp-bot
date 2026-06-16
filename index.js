@@ -131,7 +131,11 @@ if (
     text.toLowerCase() === 'sibuk nggak' ||
     text.toLowerCase() === 'sibuk gak' ||
     text.toLowerCase() === 'lagi sibuk nggak' ||
-    text.toLowerCase() === 'lagi sibuk gak'
+    text.toLowerCase() === 'lagi sibuk gak' ||
+    text.toLowerCase() === 'gin, sibuk nggak' ||
+    text.toLowerCase() === 'gina, sibuk nggak'||
+    text.toLowerCase() === 'gin, sibuk gak' ||
+    text.toLowerCase() === 'gina, sibuk gak'
 ) {
 
     await client.sendMessage(
