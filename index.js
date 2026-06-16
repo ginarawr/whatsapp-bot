@@ -63,6 +63,13 @@ console.log(
     message.author
 );
 
+console.log('====================');
+console.log('BODY:', message.body);
+console.log('FROM:', message.from);
+console.log('AUTHOR:', message.author);
+console.log('FROMME:', message.fromMe);
+console.log('====================');
+
 // ==========================
 // FILTER CHAT BOT
 // ==========================
