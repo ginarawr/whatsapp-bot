@@ -782,9 +782,9 @@ Keterangan : ${keterangan}`
     } catch (error) {
 
         console.error(
-            'ERROR:',
-            error.message
-        );
+    'ERROR:',
+    error
+);
 
         await message.reply(
             '❌ Terjadi kesalahan.'
