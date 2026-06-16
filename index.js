@@ -173,12 +173,19 @@ Gunakan perintah "tutorial" untuk melihat panduan ini lagi.`
         // ==========================
         if (text.toLowerCase() === 'saldo') {
 
-            const response =
-                await axios.get(
-                    APPS_SCRIPT_URL
-                );
+           console.log('COMMAND SALDO');
 
-            await client.sendMessage(
+    const response =
+        await axios.get(
+            APPS_SCRIPT_URL
+        );
+
+    console.log(
+        'RESPON APPS SCRIPT:',
+        response.data
+    );
+
+            await message.reply(
                 `💰 Saldo Saat Ini\n\nRp${formatRupiah(response.data.saldo)}`
             );
 
