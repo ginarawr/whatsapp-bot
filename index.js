@@ -57,7 +57,7 @@ if (
     text.toLowerCase() === 'gina'
 ) {
 
-    await message.reply('iya?');
+    await client.sendMessage('iya?');
 
     return;
 }
@@ -66,7 +66,7 @@ if (
     text.toLowerCase() === 'pp'
 ) {
 
-    await message.reply('apa?');
+    await client.sendMessage('apa?');
 
     return;
 }
@@ -82,7 +82,7 @@ if (
     text.toLowerCase() === 'assalamualaikum warahmatullahi wabarakatuh'
 ) {
 
-    await message.reply("iya, wa'alaikumussalam wr wb");
+    await client.sendMessage("iya, wa'alaikumussalam wr wb");
 
     return;
 }
@@ -108,7 +108,7 @@ console.log('====================');
         // ==========================
         if (text.toLowerCase() === 'tutorial') {
 
-            await message.reply(
+            await client.sendMessage(
 `📚 Cara Menggunakan Bot
 
 ➕ Tambah Pemasukan
@@ -173,7 +173,7 @@ Gunakan perintah "tutorial" untuk melihat panduan ini lagi.`
                     APPS_SCRIPT_URL
                 );
 
-            await message.reply(
+            await client.sendMessage(
                 `💰 Saldo Saat Ini\n\nRp${formatRupiah(response.data.saldo)}`
             );
 
@@ -190,7 +190,7 @@ Gunakan perintah "tutorial" untuk melihat panduan ini lagi.`
                     APPS_SCRIPT_URL
                 );
 
-            await message.reply(
+            await client.sendMessage(
 `📊 Laporan Keuangan
 
 Pemasukan  : Rp${formatRupiah(response.data.pemasukan)}
@@ -223,7 +223,7 @@ if (
         data.length === 0
     ) {
 
-        await message.reply(
+        await client.sendMessage(
             '📋 Tidak ada tugas aktif'
         );
 
@@ -266,7 +266,7 @@ ${ikon} ${item.prioritas}
     pesan +=
 `Total tugas aktif: ${data.length}`;
 
-    await message.reply(
+    await client.sendMessage(
         pesan
     );
 
@@ -300,7 +300,7 @@ if (
 
     if (!tugas) {
 
-        await message.reply(
+        await client.sendMessage(
             'Tugas tidak ditemukan'
         );
 
@@ -323,7 +323,7 @@ if (
         ikon = '🟡';
     }
 
-    await message.reply(
+    await client.sendMessage(
 `📋 ${tugas.namaTugas}
 
 📝 ${tugas.deskripsi}
@@ -341,7 +341,7 @@ ${ikon} ${tugas.prioritas}
         // ==========================
         if (text.toLowerCase() === 'kategori') {
 
-            await message.reply(
+            await client.sendMessage(
 `📂 Daftar Kategori
 
 Pemasukan:
@@ -398,7 +398,7 @@ kategori makan`
                 data.length === 0
             ) {
 
-                await message.reply(
+                await client.sendMessage(
                     `Kategori "${kategori}" tidak ditemukan`
                 );
 
@@ -429,7 +429,7 @@ ${item.keterangan}
 `Total transaksi: ${data.length}
 Total nominal: Rp${formatRupiah(total)}`;
 
-            await message.reply(
+            await client.sendMessage(
                 pesan
             );
 
@@ -487,7 +487,7 @@ if (lines.length === 5) {
             }
         );
 
-        await message.reply(
+        await client.sendMessage(
 `✅ Tugas Ditambahkan
 
 📋 ${namaTugas}
@@ -534,13 +534,13 @@ if (
         response.data.success
     ) {
 
-        await message.reply(
+        await client.sendMessage(
             `✅ Tugas ${nomor} sekarang sedang dikerjakan`
         );
 
     } else {
 
-        await message.reply(
+        await client.sendMessage(
             '❌ Gagal mengubah status tugas'
         );
     }
@@ -580,13 +580,13 @@ if (
         response.data.success
     ) {
 
-        await message.reply(
+        await client.sendMessage(
             `✅ Tugas ${nomor} selesai`
         );
 
     } else {
 
-        await message.reply(
+        await client.sendMessage(
             '❌ Gagal mengubah status tugas'
         );
     }
@@ -624,7 +624,7 @@ if (
             }
         );
 
-    await message.reply(
+    await client.sendMessage(
         `📅 Deadline tugas ${nomor} diperbarui menjadi ${deadline}`
     );
 
@@ -662,7 +662,7 @@ if (
             }
         );
 
-    await message.reply(
+    await client.sendMessage(
         `📌 Prioritas tugas ${nomor} menjadi ${prioritas}`
     );
 
@@ -699,7 +699,7 @@ if (
             }
         );
 
-    await message.reply(
+    await client.sendMessage(
         `📝 Deskripsi tugas ${nomor} berhasil diperbarui`
     );
 
@@ -742,6 +742,7 @@ if (
                     await axios.post(
                         APPS_SCRIPT_URL,
                         {
+                            tipe: 'transaksi',
                             jenis,
                             nominal,
                             kategori,
@@ -749,18 +750,25 @@ if (
                         }
                     );
 
-                console.log(
-                    response.data
-                );
+                console.log(response.data);
 
-                await message.reply(
+if (!response.data.success) {
+
+    await client.sendMessage(
+        '❌ Gagal menyimpan transaksi'
+    );
+
+    return;
+}
+
+await client.sendMessage(
 `✅ Transaksi Tersimpan
 
 Jenis      : ${jenis}
 Nominal    : Rp${formatRupiah(nominal)}
 Kategori   : ${kategori}
 Keterangan : ${keterangan}`
-                );
+);
 
                 return;
             }
@@ -773,7 +781,7 @@ Keterangan : ${keterangan}`
             error.message
         );
 
-        await message.reply(
+        await client.sendMessage(
             '❌ Terjadi kesalahan.'
         );
     }
