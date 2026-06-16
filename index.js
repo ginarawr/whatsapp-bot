@@ -766,11 +766,7 @@ if (
 
 if (!response.data.success) {
 
-<<<<<<< HEAD
-    await client.message.reply(
-=======
     await message.reply(
->>>>>>> 507fa277b1558e9f7b5632b0d0213b61a73faa36
         '❌ Gagal menyimpan transaksi'
     );
 
@@ -797,11 +793,7 @@ Keterangan : ${keterangan}`
     error
 );
 
-<<<<<<< HEAD
-        await client.message.reply(
-=======
         await message.reply(
->>>>>>> 507fa277b1558e9f7b5632b0d0213b61a73faa36
             '❌ Terjadi kesalahan.'
         );
     }
