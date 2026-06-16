@@ -53,13 +53,7 @@ client.on('message_create', async (message) => {
 
         const text = message.body.trim();
 
-        if (
-    message.author === undefined
-) {
-    return;
-}
-
-        console.log(
+console.log(
     'FROM:',
     message.from
 );
@@ -69,50 +63,40 @@ console.log(
     message.author
 );
 
-        // ==========================
-// RESPON UMUM UNTUK SEMUA ORANG
+// ==========================
+// FILTER CHAT BOT
 // ==========================
 
+const BOT_CHAT_ID =
+    '73620051198146@lid';
+
+// Abaikan balasan bot sendiri
 if (
-    text.toLowerCase() === 'gin' ||
-    text.toLowerCase() === 'gina'
+    message.author === undefined
 ) {
-
-    await client.sendMessage('iya?');
-
-    return;
-}
-if (
-    text.toLowerCase() === 'p' ||
-    text.toLowerCase() === 'pp'
-) {
-
-    await client.sendMessage('apa?');
-
-    return;
-}
-if (
-    text.toLowerCase() === "assalamu'alaikum" ||
-    text.toLowerCase() === "assalamu'alaikum gin" ||
-    text.toLowerCase() === "assalamu'alaikum gina" ||
-    text.toLowerCase() === 'assalamualaikum' ||
-    text.toLowerCase() === 'assalamualaikum gin' ||
-    text.toLowerCase() === 'assalamualaikum gina' ||
-    text.toLowerCase() === "assalamu'alaikum wr wb" ||
-    text.toLowerCase() === 'assalamualaikum wr wb' ||
-    text.toLowerCase() === 'assalamualaikum warahmatullahi wabarakatuh'
-) {
-
-    await client.sendMessage("iya, wa'alaikumussalam wr wb");
-
     return;
 }
 
-// ==========================
-// FINANCE TRACKER HANYA UNTUK PESAN SENDIRI
-// ==========================
+// Abaikan status WA
+if (
+    message.from ===
+    'status@broadcast'
+) {
+    return;
+}
 
-if (!message.fromMe) {
+// Abaikan semua chat selain grup bot
+if (
+    message.from !==
+    BOT_CHAT_ID
+) {
+    return;
+}
+
+// Hanya proses pesan yang saya kirim
+if (
+    !message.fromMe
+) {
     return;
 }
 
