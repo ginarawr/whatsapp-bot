@@ -759,7 +759,7 @@ if (
 
 if (!response.data.success) {
 
-    await client.sendMessage(
+    await message.reply(
         '❌ Gagal menyimpan transaksi'
     );
 
@@ -786,7 +786,7 @@ Keterangan : ${keterangan}`
             error.message
         );
 
-        await client.sendMessage(
+        await message.reply(
             '❌ Terjadi kesalahan.'
         );
     }
